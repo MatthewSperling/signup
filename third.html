@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - Step 3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+    <img src="./images/logo.svg" alt="Crypta Logo">
+</header>
+    <h2>Signup - Step 3 of 3</h2>
+    <form id="signupForm" action="forth.html" onsubmit="return validateForm()">
+        <label for="income">Income Level</label>
+        <input type="text" id="income" name="income" required pattern="\d+" title="Income must be a numeric value and at least 1000.">
+        <span id="incomeError" style="color:red;"></span>
+
+        <label for="agreement">I agree to let CRPTA use my information</label>
+        <input type="checkbox" id="agreement" name="agreement" required>
+        <span id="agreementError" style="color:red;"></span>
+
+        <label for="experience">Investment Experience</label>
+        <select id="experience" name="experience" required>
+            <option value="">Select</option>
+            <option value="1">1 (None)</option>
+            <option value="2">2 (Little Experience)</option>
+            <option value="3">3 (Moderate Experience)</option>
+            <option value="4">4 (Experienced)</option>
+            <option value="5">5 (Very Experienced)</option>
+        </select>
+        <span id="experienceError" style="color:red;"></span>
+
+        <label for="riskTolerance">Risk Tolerance</label>
+        <select id="riskTolerance" name="riskTolerance" required>
+            <option value="">Select</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select>
+        <span id="riskToleranceError" style="color:red;"></span>
+
+        <label for="goals">Investment Goals</label>
+        <input type="text" id="goals" name="goals" required minlength="3">
+        <span id="goalsError" style="color:red;"></span>
+
+        <label>Bank Account Information</label>
+        <div>
+            <label for="transitNumber">Transit Number</label>
+            <input type="text" id="transitNumber" name="transitNumber" required pattern="\d{5}" maxlength="5" title="Transit number must be exactly 5 digits.">
+            <span id="transitError" style="color:red;"></span>
+        </div>
+        <div>
+            <label for="branchNumber">Branch Number</label>
+            <input type="text" id="branchNumber" name="branchNumber" required pattern="\d{3}" maxlength="3" title="Branch number must be exactly 3 digits.">
+            <span id="branchError" style="color:red;"></span>
+        </div>
+        <div>
+            <label for="accountNumber">Account Number</label>
+            <input type="text" id="accountNumber" name="accountNumber" required pattern="\d{5,12}" maxlength="12" title="Account number must be between 5 and 12 digits.">
+            <span id="accountError" style="color:red;"></span>
+        </div>
+
+        <button type="submit">Complete Signup</button>
+    </form>
+    <footer class="footer">
+        <img src="./images/logo2.svg" alt="Crypta Logo Footer">
+    </footer>
+    <script>
+        function validateForm() {
+            let valid = true;
+            document.getElementById("incomeError").textContent = "";
+            document.getElementById("agreementError").textContent = "";
+            document.getElementById("experienceError").textContent = "";
+            document.getElementById("riskToleranceError").textContent = "";
+            document.getElementById("goalsError").textContent = "";
+            document.getElementById("transitError").textContent = "";
+            document.getElementById("branchError").textContent = "";
+            document.getElementById("accountError").textContent = "";
+
+            const income = Number(document.getElementById("income").value);
+            if (income < 1000) {
+                document.getElementById("incomeError").textContent = "Income must be at least 1000.";
+                valid = false;
+            }
+
+            if (!document.getElementById("agreement").checked) {
+                document.getElementById("agreementError").textContent = "You must agree to the terms.";
+                valid = false;
+            }
+
+            return valid;
+        }
+    </script>
+</body>
+</html>

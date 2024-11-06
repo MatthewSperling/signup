@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - Step 1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+
+</head>
+<body>
+    <header class="header">
+        <img src="./images/logo.svg" alt="Crypta Logo">
+    </header>
+
+    <h2>Signup - Step 1 of 3</h2>
+    <form id="signupForm" action="second.html" onsubmit="return validateForm()">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" name="fullName" required>
+        <span id="fullNameError" style="color:red;"></span>
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required>
+        <span id="emailError" style="color:red;"></span>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+        <span id="passwordError" style="color:red;"></span>
+
+        <button type="submit">Next</button>
+    </form>
+    <footer class="footer">
+        <img src="./images/logo2.svg" alt="Crypta Logo Footer">
+    </footer>
+    <script>
+        function validateForm() {
+            let valid = true;
+
+            document.getElementById("fullNameError").textContent = "";
+            document.getElementById("emailError").textContent = "";
+            document.getElementById("passwordError").textContent = "";
+
+            const fullName = document.getElementById("fullName").value;
+            if (fullName.length < 3) {
+                document.getElementById("fullNameError").textContent = "Full name must be at least 3 characters.";
+                valid = false;
+            }
+
+            const email = document.getElementById("email").value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById("emailError").textContent = "Please enter a valid email address.";
+                valid = false;
+            }
+
+            const password = document.getElementById("password").value;
+            if (password.length < 8) {
+                document.getElementById("passwordError").textContent = "Password must be at least 8 characters long.";
+                valid = false;
+            }
+
+            return valid;
+        }
+    </script>
+</body>
+</html>
